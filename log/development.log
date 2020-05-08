@@ -1,2 +1,57 @@
   [1m[35m (2.7ms)[0m  [1m[35mCREATE DATABASE "clear_appointments_api_development" ENCODING = 'unicode'[0m
   [1m[35m (28.1ms)[0m  [1m[35mCREATE DATABASE "clear_appointments_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (56.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2802576867429010560)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePatients (20200508160144)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.5ms)[0m  [1m[35mCREATE TABLE "patients" ("id" bigserial primary key, "name" character varying, "DOB" character varying, "insurance" character varying, "allergies" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200508160144"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDoctors (20200508160722)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "doctors" ("id" bigserial primary key, "name" character varying, "specialty" character varying, "insurance" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200508160722"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-05-08 16:09:17.753757"], ["updated_at", "2020-05-08 16:09:17.753757"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2802576867429010560)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPatient Create (4.2ms)[0m  [1m[32mINSERT INTO "patients" ("name", "DOB", "insurance", "allergies", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Loganne"], ["DOB", "5/27/96"], ["insurance", "Providence"], ["allergies", "gluten"], ["created_at", "2020-05-08 16:16:05.171627"], ["updated_at", "2020-05-08 16:16:05.171627"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPatient Create (0.4ms)[0m  [1m[32mINSERT INTO "patients" ("name", "DOB", "insurance", "allergies", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Morgan"], ["DOB", "08/19/93"], ["insurance", "Blue Cross"], ["allergies", "none"], ["created_at", "2020-05-08 16:16:05.182115"], ["updated_at", "2020-05-08 16:16:05.182115"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDoctor Create (2.1ms)[0m  [1m[32mINSERT INTO "doctors" ("name", "specialty", "insurance", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Dr. Klien"], ["specialty", "Optometrist"], ["insurance", "Providence"], ["created_at", "2020-05-08 16:16:05.200988"], ["updated_at", "2020-05-08 16:16:05.200988"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDoctor Create (0.4ms)[0m  [1m[32mINSERT INTO "doctors" ("name", "specialty", "insurance", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Dr. Reed"], ["specialty", "Pediatrist"], ["insurance", "Blue Cross"], ["created_at", "2020-05-08 16:16:05.209096"], ["updated_at", "2020-05-08 16:16:05.209096"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-05-08 10:16:20 -0600
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/loganne/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/loganne/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 58.3ms | Allocations: 484)
+Completed 200 OK in 130ms (Views: 88.4ms | ActiveRecord: 0.0ms | Allocations: 2640)
+
+
+Started GET "/patients" for ::1 at 2020-05-08 10:16:25 -0600
+Processing by PatientsController#index as HTML
+  [1m[36mPatient Load (2.5ms)[0m  [1m[34mSELECT "patients".* FROM "patients"[0m
+  ↳ app/controllers/patients_controller.rb:8:in `index'
+Completed 200 OK in 99ms (Views: 65.5ms | ActiveRecord: 23.1ms | Allocations: 7262)
+
+
+Started GET "/doctors" for ::1 at 2020-05-08 10:16:33 -0600
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (3.0ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/controllers/doctors_controller.rb:8:in `index'
+Completed 200 OK in 46ms (Views: 29.3ms | ActiveRecord: 13.4ms | Allocations: 5777)
+
+
