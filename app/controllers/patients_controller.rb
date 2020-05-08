@@ -5,12 +5,12 @@ class PatientsController < ApplicationController
   def index
     @patients = Patient.all
 
-    render json: @patients
+    render json: @patients.to_json(include: :doctors)
   end
 
   # GET /patients/1
   def show
-    render json: @patient
+    render json: @patient.to_json(include: :doctors)
   end
 
   # POST /patients

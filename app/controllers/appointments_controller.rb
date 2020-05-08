@@ -5,12 +5,12 @@ class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
 
-    render json: @appointments
+    render json: @appointments.to_json(include: [:patient, :doctor])
   end
 
   # GET /appointments/1
   def show
-    render json: @appointment
+    render json: @appointment.to_json(include: [:patient, :doctor])
   end
 
   # POST /appointments
