@@ -1,0 +1,2 @@
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE DATABASE "clear_appointments_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (28.1ms)[0m  [1m[35mCREATE DATABASE "clear_appointments_api_test" ENCODING = 'unicode'[0m
